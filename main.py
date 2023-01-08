@@ -32,7 +32,7 @@ ACID_DROP = pygame.transform.scale(pygame.image.load('assets/imgs/acid_drop.png'
 LASER = pygame.transform.rotate(pygame.image.load('assets/imgs/laser_32.png'), -90)
 GRASS_PATCH = pygame.transform.scale(pygame.image.load('assets/imgs/grass_patch.png'), (32, 32))
 GRASS_1 = pygame.transform.scale(pygame.image.load('assets/imgs/grass_1.png'), (32, 32))
-WEED = pygame.transform.scale(pygame.image.load('assets/imgs/weed.png'), (32, 32))
+GAME_OVER = pygame.image.load('assets/imgs/game_over.png')
 BACKGROUND = pygame.transform.scale(pygame.image.load(
     'assets/imgs/plains.png'), (WIDTH, HEIGHT))
 
@@ -224,6 +224,8 @@ def main():
 
         if lost:
             lost_label = lost_font.render("You Lost!!", 1, (255,255,255))
+            draw_screen()
+            screen.blit(GAME_OVER, (WIDTH/2 - GAME_OVER.get_width()/2, 20))
             screen.blit(lost_label, (WIDTH/2 - lost_label.get_width()/2, 350))
             
         pygame.display.update()
@@ -246,7 +248,7 @@ def main():
             level += 1
             wave_length += 5
             for i in range(wave_length):
-                cloud = Clouds(random.randrange(10, WIDTH-10), random.randrange(-1500, -100))
+                cloud = Clouds(random.randrange(10, WIDTH-64), random.randrange(-1500, -100))
                 clouds.append(cloud)
 
         for event in pygame.event.get():
@@ -286,10 +288,11 @@ def main_menu():
     while running:
         screen.fill(COLOR)
         screen.blit(BACKGROUND, (0,0))
+        # screen.blit(GAME_OVER, (0, 0))
         instr_label_1 = title_font_1.render("USE LEFT AND RIGHT KEYS TO MOVE", 1, (0,0,0))
         instr_label_2 = title_font_1.render("SPACEBAR FOR SHOOTING AWAY THE CLOUDS", 1, (0,0,0))
         title_label = title_font_2.render("Press the mouse to begin...", 1, (0,0,0))
-        screen.blit(instr_label_1, (WIDTH/2 - instr_label_1.get_width()/2, 50))
+        screen.blit(instr_label_1, (WIDTH/2 - instr_label_1.get_width()/2, 50)) 
         screen.blit(instr_label_2, (WIDTH/2 - instr_label_2.get_width()/2, 100))
         screen.blit(title_label, (WIDTH/2 - title_label.get_width()/2, 350))
         pygame.display.update()

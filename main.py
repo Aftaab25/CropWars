@@ -13,8 +13,7 @@ HEIGHT = 512
 COLOR = (255, 255, 255)
 SIZE = 64
 MIN_GRASS_HEIGHT = 288
-# PLAYER_VELOCITY = 4
-# ENEMY_VELOCITY = 1
+
 
 # Game Screen
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -25,7 +24,6 @@ icon = pygame.image.load('assets/imgs/icon.png')
 pygame.display.set_icon(icon)
 
 # Load Images
-# PLAYER = pygame.transform.scale(pygame.image.load('assets/imgs/air_blower.png'), (64, 64))
 PLAYER = pygame.transform.rotate(pygame.transform.scale(pygame.image.load('assets/imgs/robo.png'), (64, 64)), 0)
 ENEMY_CLOUD_1 = pygame.transform.scale(pygame.image.load('assets/imgs/thunder.png'), (64, 64))
 ACID_DROP = pygame.transform.scale(pygame.image.load('assets/imgs/acid_drop.png'), (24, 24))
@@ -200,12 +198,9 @@ def main():
     def draw_screen():
         screen.fill(COLOR)
         screen.blit(BACKGROUND, (0, 0))
-        # screen.blit(GRASS_PATCH, (20, MIN_GRASS_HEIGHT))
         draw_grass()
         draw_grass_patch()
-        # screen.blit(WEED, (180, MIN_GRASS_HEIGHT+140))
-        # screen.blit(ENEMY_CLOUD_1, (100, 50))
-        # screen.blit(PLAYER, (WIDTH//2-SIZE//2, HEIGHT-SIZE-50))
+
 
     # Function to redraw window
     def redraw_window():

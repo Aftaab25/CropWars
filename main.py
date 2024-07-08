@@ -51,6 +51,8 @@ GRASS_PATCH_POSITIONS = [
     [460, 380]
 ]
 
+
+# Laser
 class Laser:
     def __init__(self, x, y, img):
         self.x = x
@@ -70,6 +72,8 @@ class Laser:
     def collision(self, obj):
         return collide(self, obj)
 
+
+# Entity
 class Entity:
     COOLDOWN = 30
 
@@ -115,7 +119,8 @@ class Entity:
     def get_height(self):
         return self.img.get_height()
 
-# Class Player
+
+# Player
 class Player(Entity):
     def __init__(self, x, y, health=100):
         super().__init__(x, y, health)
@@ -145,6 +150,8 @@ class Player(Entity):
         pygame.draw.rect(window, (255,0,0), (self.x, self.y + self.img.get_height() + 10, self.img.get_width(), 10))
         pygame.draw.rect(window, (0,255,0), (self.x, self.y + self.img.get_height() + 10, self.img.get_width() * (self.health/self.max_health), 10))
 
+
+# Clouds
 class Clouds(Entity):
     def __init__(self, x, y, health=100):
         super().__init__(x, y, health)
@@ -165,6 +172,7 @@ def collide(obj1, obj2):
     offset_x = obj2.x - obj1.x
     offset_y = obj2.y - obj1.y
     return obj1.mask.overlap(obj2.mask, (offset_x, offset_y)) != None
+
 
 # Game Loop
 def main():
